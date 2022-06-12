@@ -3,6 +3,7 @@ import UserCard from "./UserCard";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import normalizeISODateD from "../utils/formatDate";
 
 function UserDetails() {
   const { userId } = useParams();
@@ -46,10 +47,10 @@ function UserDetails() {
                 <b>Gender:</b> {user.gender}
               </div>
               <div className="truncate">
-                <b>Date of birth:</b> {user.dateOfBirth}
+                <b>Date of birth:</b> {normalizeISODateD(user.dateOfBirth)}
               </div>
               <div className="truncate">
-                <b>Register date:</b> {user.registerDate}
+                <b>Register date:</b> {normalizeISODateD(user.registerDate)}
               </div>
               <br />
               <div className="truncate">

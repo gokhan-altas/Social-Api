@@ -10,26 +10,25 @@ function Post() {
   const [filteredData, setFilteredData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
-  const fetchData = () => {
-    const options = {
-      headers: { "app-id": "62a3420f9659ae5fc3b9df4c" },
-    };
-    axios
-      .get(`https://dummyapi.io/data/v1/post?limit=${page}`, options)
-      .then((response) => {
-        if (page == 30) {
-          setHasMore(false);
-        }
-        setData(response.data.data);
-        // console.log(response.data.data);
-      });
-  };
-
   const getMoreData = () => {
     setPage(page + 10);
   };
 
   useEffect(() => {
+    const fetchData = () => {
+      const options = {
+        headers: { "app-id": "62a3420f9659ae5fc3b9df4c" },
+      };
+      axios
+        .get(`https://dummyapi.io/data/v1/post?limit=${page}`, options)
+        .then((response) => {
+          if (page === 30) {
+            setHasMore(false);
+          }
+          setData(response.data.data);
+        });
+    };
+
     fetchData();
   }, [page]);
 
@@ -51,7 +50,7 @@ function Post() {
       setFilteredData(filtered);
     }
 
-    if (event.target.value.length == 0) {
+    if (event.target.value.length === 0) {
       setFilteredData([]);
     }
   };
@@ -63,7 +62,7 @@ function Post() {
     >
       <input
         type="text"
-        class="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-100 text-gray-300 placeholder-gray-400 
+        className="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-100 text-gray-300 placeholder-gray-400 
           focus:outline-none focus:bg-white focus:text-gray-900 sm:text-sm transition duration-150 ease-in-out max-w-lg h-14"
         placeholder="Search"
         onChange={handleSearch}
@@ -95,7 +94,7 @@ function Post() {
             />
           ))}
 
-        {filteredData.length == 0 &&
+        {filteredData.length === 0 &&
           data.map((item, index) => (
             <PostCard
               key={index}

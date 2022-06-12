@@ -5,12 +5,14 @@ export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <div className="flex items-center justify-between border-b border-gray-400 py-4">
-      <Link to="/" className="justify-between">
+    <div className="flex items-center justify-between border-b border-gray-400 p-4 relative header">
+      <Link to="/">
         <img
           src="https://media-exp1.licdn.com/dms/image/D4E03AQGs7gcfDhhBsg/profile-displayphoto-shrink_800_800/0/1646845491801?e=1660780800&v=beta&t=ON6dWtMFf-pZplWbyOZrRpyj9R7kZS0n3tWO6vB0PJI"
-          className="mx-8 rounded-full h-20 border p-1 inline mr-3"
+          className=" rounded-full h-20 border inline"
         />
+      </Link>
+      <Link to="/" className="absolute left-2/4 logo">
         <img
           src="https://marka-logo.com/wp-content/uploads/2020/04/Instagram-Logo.png"
           className="w-28 inline"
@@ -19,7 +21,7 @@ export default function Header() {
       <nav>
         <section className=" flex lg:hidden">
           <div
-            className="HAMBURGER-ICON space-y-2 p-5"
+            className="HAMBURGER-ICON space-y-2"
             onClick={() => setIsNavOpen((prev) => !prev)}
           >
             <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
@@ -83,25 +85,6 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-      <style>{`
-      .hideMenuNav {
-        display: none;
-      }
-      .showMenuNav {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        top: 0;
-        left: 0;
-        background: white;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-    `}</style>
     </div>
   );
 }
